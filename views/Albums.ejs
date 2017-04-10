@@ -113,6 +113,114 @@
         </div>
         <!-- End Header-->
         <div class="body-web">
+            <div class="container">
+                <div class="breadcrumbs-s">
+                    <ol class="breadcrumb">
+                        <li><a href="http://localhost:8080/">Home</a>
+                        </li>
+                        <li class="active"><a class="colorCrums" href="http://localhost:8080/Albums">Albums</a>
+                        </li>
+                    </ol>
+                </div>
+                <!-- End BreadCrumbs-->
+
+                <div>
+                    <div class="row">
+                        <div class="col-md-3 hidden-leftmenu">
+
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingOne">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <h4 class="panel-title">
+                                             Albums <span class="caret"></span>
+                                        </h4>
+                                        </a>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                        <div class="panel-body">
+                                            <div class="left-navigation panel panel-default">
+                                                <a role="button" data-toggle="collapse" data-parent="#collapseOne" href="#listAlbums" aria-expanded="true" aria-controls="collapseOne">
+                                                    <div class="panel-heading">
+                                                        ALL Albums
+                                                    </div>
+                                                </a>
+                                                <ul class="nav navbar-default" style="padding: 0 5%;" id="listAlbums">
+                                                    <li><a href="http://localhost:8080/Albums/:1">Album 1</a></li>
+                                                    <li><a href="http://localhost:8080/Albums/2">Album 2</a></li>
+                                                    <li><a href="http://localhost:8080/Albums/3">Album 3</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-9 default-thumnail">
+
+                            <div class="thumbnail">
+                                <div class="panel panel-default panel-heading">
+                                    <h5>Album1</h5>
+                                </div>
+                                <img src="../img/logo1.jpg" alt="..." class="parentimage">
+                                <hr>
+                                <div class="caption textAlginThumail-Albums">
+                                    <span>
+                                    <img src="../img/bg.jpg" alt="..." class="img-circle"> <a href="">Hoc</a>
+                                    </span>
+                                    <div class="viewS">
+                                        <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View: 13</p>
+                                    </div>
+                                    <p class="algintext"><a href="#" class="btn btn-success" role="button">Detail</a>
+                                </div>
+                            </div>
+
+
+
+                            <div class="thumbnail">
+                                <div class="panel panel-default panel-heading">
+                                    <h5>Album2</h5>
+                                </div>
+                                <img src="../img/bg.jpg" alt="..." class="parentimage">
+                                <hr>
+                                <div class="caption textAlginThumail-Albums">
+                                    <span>
+                                    <img src="../img/bg.jpg" alt="..." class="img-circle"> <a href="">Ho Thao Hien</a>
+                                    </span>
+                                    <div class="viewS">
+                                        <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View: 160</p>
+                                    </div>
+                                    <p class="algintext"><a href="#" class="btn btn-success" role="button">Detail</a>
+
+                                </div>
+                            </div>
+
+
+                            <div class="thumbnail">
+                                <div class="panel panel-default panel-heading">
+                                    <h5>Album 3</h5>
+                                </div>
+                                <img src="../img/background.jpg" alt="..." class="parentimage">
+                                <hr>
+                                <div class="caption textAlginThumail-Albums">
+                                    <span>
+                                    <img src="../img/logo.png" alt="..." class="img-circle"> <a href="">Vu Dang Khoa</a>
+                                    </span>
+                                    <div class="viewS">
+
+                                        <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View: 1000
+                                        </p>
+                                    </div>
+                                    <p class="algintext"><a href="#" class="btn btn-success" role="button">Detail</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End row -->
+                </div>
+                <!-- via ngoai cua End Row -->
+            </div>
           
         </div>
         <!--End: body-web Phần thân của trang web "web được chia làm 3 phần -->
