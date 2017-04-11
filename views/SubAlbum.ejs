@@ -176,7 +176,7 @@
                                     <% var sumary = cus.noidunganh.substring(0, 10) + " ..."; %>
                                     <% if ( count == x) { %>
                                         <div class="col-sm-4 col-md-4 column-list-image">
-                                          <a href="/Detailimage/<%= cus.imagecodesx %>" class="thumbnail hoverLink">
+                                          <a href="/Detailimage/<%= cus.albumcode %>/<%= cus.albumname %>/<%= cus.imagecodesx %>" class="thumbnail hoverLink">
                                             <img src="<%= cus.linkimage %>" alt="...">
                                             <div class="caption textAlginThumail-Albums">
                                                   <div class="viewS">
@@ -196,7 +196,7 @@
                                           <% count = 0; %>
                                         <% } %>
                                     <% } else { %>
-                                      <a href="/Detailimage/<%= cus.imagecodesx %>" class="thumbnail hoverLink">
+                                      <a href="/Detailimage/<%= cus.albumcode %>/<%= cus.albumname %>/<%= cus.imagecodesx %>" class="thumbnail hoverLink">
                                         <img src="<%= cus.linkimage %>" alt="...">
                                         <div class="caption textAlginThumail-Albums">
                                               <div class="viewS">
@@ -247,7 +247,8 @@
     </div>
     <!-- End Warpper-->
 
-
+    <a href="./">sadasdsadasdsad</a>
+    <a href="./public/js/bootstrap.min.js">sadasdsadasdsad</a>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>

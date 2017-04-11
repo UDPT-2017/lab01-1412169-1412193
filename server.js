@@ -112,7 +112,7 @@ app.get("/SubAlbum/:id" , function (req, res) {
                   return console.error('error running query', err);
                 }
                var codeAlbums = req.params.id;
-               client.query('SELECT albumname, imagecodesx, noidunganh, linkimage, soview, username, avatar from albumsd d, chitietalbum b, images c , "user" a where b.albumsids = ' + codeAlbums + ' and b.imageids = c.imagecodesx and c.usercreate = a.id and d.albumcode = b.albumsids;', function (err, result1) {
+               client.query('SELECT albumcode, albumname, imagecodesx, noidunganh, linkimage, soview, username, avatar from albumsd d, chitietalbum b, images c , "user" a where b.albumsids = ' + codeAlbums + ' and b.imageids = c.imagecodesx and c.usercreate = a.id and d.albumcode = b.albumsids;', function (err, result1) {
                 done(err);
 
 
@@ -131,21 +131,26 @@ app.get("/SubAlbum/:id" , function (req, res) {
 
 
 
-app.get("/Detailimage/:namepage/:id", function (req, res) {
+app.get("/Detailimage/:albumcode/:namepage/:id", function (req, res) {
       pool.connect(function(err, client, done) {
       if(err) {
         return console.error('error fetching client from pool', err);
       }
       var namespacesc = req.params.namepage;
       var idCode = req.params.id;
-      client.query('select * from images where imagecodesx = ' + idCode + ' ;', function(err, result) {
-      done(err);
-
-      if(err) {
-        res.end();
-        return console.error('error running query', err);
-      }
-        res.render("Detail", {user : req.user , nameAlbum:  namespacesc, infomation: result.rows[0]});
+      var albumcode = req.params.albumcode;
+      console.log(namespacesc);
+      console.log(albumcode);
+      console.log(idCode);
+      client.query('select imagecodesx, noidunganh, linkimage, soview, username, avatar from images a, "user" b where a.usercreate = b.id and a.imagecodesx = ' + idCode, function(err, result) {
+        done(err);
+        console.log("Hello1");
+        if(err) {
+          res.end();
+          return console.error('error running query', err);
+        }
+        console.log("Hello2");
+        res.render("Detail", {user : req.user, codeAlbums : albumcode,  nameAlbum:  namespacesc, infomation: result.rows[0]});
       });
     });
 });
