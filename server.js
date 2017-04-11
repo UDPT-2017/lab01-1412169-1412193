@@ -131,21 +131,27 @@ app.get("/SubAlbum/:id" , function (req, res) {
 
 
 
-app.get("/Detailimage/:id", function (req, res) {
+app.get("/Detailimage/:namepage/:id", function (req, res) {
       pool.connect(function(err, client, done) {
       if(err) {
         return console.error('error fetching client from pool', err);
       }
-      client.query('SELECT albumcode, albumname, tongsoluotview, linkdaidien, username, avatar from albumsd a, "user" b where a.userid = b.id', function(err, result) {
+      var namespacesc = req.params.namepage;
+      var idCode = req.params.id;
+      client.query('select * from images where imagecodesx = ' + idCode + ' ;', function(err, result) {
       done(err);
 
       if(err) {
         res.end();
         return console.error('error running query', err);
       }
-        //res.render("Albums", {user : req.user , infomation: result});
+        res.render("Detail", {user : req.user , nameAlbum:  namespacesc, infomation: result.rows[0]});
       });
     });
+});
+
+app.get("/Detail", function (req, res) {
+    res.render("Detail");
 });
 
 // port  listen 8080
