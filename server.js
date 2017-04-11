@@ -1,10 +1,19 @@
 var express = require("express");
 var bodyparser = require("body-parser");
 var app = express();
-
+var pg = require("pg");
 var urlencodeParser = bodyparser.urlencoded({extended:true});
 
-
+var config = {
+  user: 'postgres', //env var: PGUSER
+  database: 'Photo', //env var: PGDATABASE
+  password: 'hocmap123', //env var: PGPASSWORD
+  host: 'localhost', // Server hosting the postgres database
+  port: 5432, //env var: PGPORT
+  max: 10, // max number of clients in the pool
+  idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
+};
+var pool = new pg.Pool(config);
 
 
 // Template engine
@@ -64,8 +73,22 @@ app.get("/Blogs", function (req, res) {
 
 app.get("/Albums", function (req, res) {
 
-  res.render("Albums", { user : req.user });
+  //res.render("Albums", { user : req.user });
+  // xu ly 1 chut cai nay
+      pool.connect(function(err, client, done) {
+      if(err) {
+        return console.error('error fetching client from pool', err);
+      }
+      client.query('SELECT albumcode, albumname, tongsoluotview, linkdaidien, username, avatar from albumsd a, "user" b where a.userid = b.id', function(err, result) {
+      done(err);
 
+      if(err) {
+        res.end();
+        return console.error('error running query', err);
+      }
+        res.render("Albums", {user : req.user , infomation: result});
+      });
+    });
 });
 
 
@@ -73,12 +96,56 @@ app.get("/Albums", function (req, res) {
 
 // Sub-Album (chua the xu ly duoc de sau vay)
 
-app.get("/Albums/:id" , function (req, res) {
+app.get("/SubAlbum/:id" , function (req, res) {
+      //res.render("SubAlbum", { user : req.user });
+      // chuyen vao 1 cai id de no co the vong lap tao ra
+      pool.connect(function(err, client, done) {
+        if(err) {
+          return console.error('error fetching client from pool', err);
+        }
 
-  // chuyen vao 1 cai id de no co the vong lap tao ra
+        client.query('SELECT albumcode, albumname, tongsoluotview, linkdaidien, username, avatar from albumsd a, "user" b where a.userid = b.id' , function(err, result) {
+                done(err);
 
-  res.render("SubAlbum");
+                if(err) {
+                  res.end();
+                  return console.error('error running query', err);
+                }
+               var codeAlbums = req.params.id;
+               client.query('SELECT albumname, imagecodesx, noidunganh, linkimage, soview, username, avatar from albumsd d, chitietalbum b, images c , "user" a where b.albumsids = ' + codeAlbums + ' and b.imageids = c.imagecodesx and c.usercreate = a.id and d.albumcode = b.albumsids;', function (err, result1) {
+                done(err);
 
+
+
+
+                if(err) {
+                  res.end();
+                  return console.error('error running query', err);
+                }
+
+                res.render("SubAlbum", { user : req.user , infomation: result, infomation1: result1 });
+              })
+        })
+    })
+})
+
+
+
+app.get("/Detailimage/:id", function (req, res) {
+      pool.connect(function(err, client, done) {
+      if(err) {
+        return console.error('error fetching client from pool', err);
+      }
+      client.query('SELECT albumcode, albumname, tongsoluotview, linkdaidien, username, avatar from albumsd a, "user" b where a.userid = b.id', function(err, result) {
+      done(err);
+
+      if(err) {
+        res.end();
+        return console.error('error running query', err);
+      }
+        //res.render("Albums", {user : req.user , infomation: result});
+      });
+    });
 });
 
 // port  listen 8080

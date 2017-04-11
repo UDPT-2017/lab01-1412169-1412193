@@ -36,12 +36,9 @@
             Albums
         </div>
         <ul class="nav navbar-default" style="padding: 0 5%;">
-            <li><a href="http://localhost:8080/Albums/1">Album 1</a>
-            </li>
-            <li><a href="http://localhost:8080/Albums/2">Album 2</a>
-            </li>
-            <li><a href="http://localhost:8080/Albums/3">Album 3</a>
-            </li>
+          <% infomation.rows.forEach(function(cus) { %>
+            <li><a href="http://localhost:8080/SubAlbum/<%= cus.albumcode %>"><%= cus.albumname %></a></li>
+          <% }); %>
         </ul>
     </div>
     <button class="btn btn-inverse" id="buttonstart" value="0">
@@ -146,9 +143,9 @@
                                                     </div>
                                                 </a>
                                                 <ul class="nav navbar-default" style="padding: 0 5%;" id="listAlbums">
-                                                    <li><a href="http://localhost:8080/Albums/:1">Album 1</a></li>
-                                                    <li><a href="http://localhost:8080/Albums/2">Album 2</a></li>
-                                                    <li><a href="http://localhost:8080/Albums/3">Album 3</a></li>
+                                                  <% infomation.rows.forEach(function(cus) { %>
+                                                    <li><a href="http://localhost:8080/SubAlbum/<%= cus.albumcode %>"><%= cus.albumname %></a></li>
+                                                  <% }); %>
                                                 </ul>
                                             </div>
                                         </div>
@@ -158,70 +155,31 @@
 
                         </div>
                         <div class="col-md-9 default-thumnail">
-
+                          <% infomation.rows.forEach(function(cus) { %>
                             <div class="thumbnail">
                                 <div class="panel panel-default panel-heading">
-                                    <h5>Album1</h5>
+                                    <h5><%= cus.albumname %></h5>
                                 </div>
                                 <img src="../img/logo1.jpg" alt="..." class="parentimage">
                                 <hr>
                                 <div class="caption textAlginThumail-Albums">
                                     <span>
-                                    <img src="../img/bg.jpg" alt="..." class="img-circle"> <a href="">Hoc</a>
+                                    <img src="<%= cus.avatar %>" alt="..." class="img-circle"> <a href=""><%= cus.username %></a>
                                     </span>
                                     <div class="viewS">
-                                        <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View: 13</p>
+                                        <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <%= cus.tongsoluotview %></p>
                                     </div>
-                                    <p class="algintext"><a href="#" class="btn btn-success" role="button">Detail</a>
+                                    <p class="algintext"><a href="http://localhost:8080/SubAlbum/<%= cus.albumcode %>" class="btn btn-success" role="button">Detail</a>
                                 </div>
                             </div>
-
-
-
-                            <div class="thumbnail">
-                                <div class="panel panel-default panel-heading">
-                                    <h5>Album2</h5>
-                                </div>
-                                <img src="../img/bg.jpg" alt="..." class="parentimage">
-                                <hr>
-                                <div class="caption textAlginThumail-Albums">
-                                    <span>
-                                    <img src="../img/bg.jpg" alt="..." class="img-circle"> <a href="">Ho Thao Hien</a>
-                                    </span>
-                                    <div class="viewS">
-                                        <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View: 160</p>
-                                    </div>
-                                    <p class="algintext"><a href="#" class="btn btn-success" role="button">Detail</a>
-
-                                </div>
-                            </div>
-
-
-                            <div class="thumbnail">
-                                <div class="panel panel-default panel-heading">
-                                    <h5>Album 3</h5>
-                                </div>
-                                <img src="../img/background.jpg" alt="..." class="parentimage">
-                                <hr>
-                                <div class="caption textAlginThumail-Albums">
-                                    <span>
-                                    <img src="../img/logo.png" alt="..." class="img-circle"> <a href="">Vu Dang Khoa</a>
-                                    </span>
-                                    <div class="viewS">
-
-                                        <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View: 1000
-                                        </p>
-                                    </div>
-                                    <p class="algintext"><a href="#" class="btn btn-success" role="button">Detail</a>
-                                </div>
-                            </div>
+                          <% }); %>
                         </div>
                     </div>
                     <!-- End row -->
                 </div>
                 <!-- via ngoai cua End Row -->
             </div>
-          
+
         </div>
         <!--End: body-web Phần thân của trang web "web được chia làm 3 phần -->
         <div class="panel-footer">

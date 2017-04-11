@@ -46,12 +46,9 @@
             Albums
         </div>
         <ul class="nav navbar-default" style="padding: 0 5%;">
-            <li><a href="http://localhost:8080/Albums/1">Album 1</a>
-            </li>
-            <li><a href="http://localhost:8080/Albums/2">Album 2</a>
-            </li>
-            <li><a href="http://localhost:8080/Albums/3">Album 3</a>
-            </li>
+          <% infomation.rows.forEach(function(cus) { %>
+            <li><a href="http://localhost:8080/SubAlbum/<%= cus.albumcode %>"><%= cus.albumname %></a></li>
+          <% }); %>
         </ul>
     </div>
     <button class="btn btn-inverse" id="buttonstart" value="0">
@@ -130,7 +127,7 @@
                         </li>
                         <li><a href="http://localhost:8080/Albums">Albums</a>
                         </li>
-                        <li class="active"><a class="colorCrums" href="http://localhost:8080/Albums/1">Album 1</a>
+                        <li class="active"><a class="colorCrums" href="http://localhost:8080/Albums/1"><%= infomation1.rows[0].albumname %></a>
                         </li>
                     </ol>
                 </div>
@@ -158,9 +155,9 @@
                                       </div>
                                       </a>
                                       <ul class="nav navbar-default" style="padding: 0 5%;" id="listAlbums">
-                                                <li class="active"><a class="colorCrums" href="http://localhost:8080/Albums/1">Album 1</a></li>
-                                                <li><a href="http://localhost:8080/Albums/1">Album 2</a></li>
-                                                <li><a href="http://localhost:8080/Albums/1">Album 3</a></li>
+                                          <% infomation.rows.forEach(function(cus) { %>
+                                            <li><a href="http://localhost:8080/SubAlbum/<%= cus.albumcode %>"><%= cus.albumname %></a></li>
+                                          <% }); %>
                                       </ul>
                                     </div>
                                   </div>
@@ -172,92 +169,52 @@
                         <div class="col-md-9">
 
                           <div class="row" id="row-list-image">
-                              <div class="col-sm-4 col-md-4 column-list-image">
-                                <a href="#" class="thumbnail hoverLink">
-                                  <img src="../../img/BG.jpg" alt="...">
-                                  <div class="caption textAlginThumail-Albums">
-                                    <h5>Thumbnail label</h5>
-                                    <p>toi la nguyen thai hoc can duoc chu y hon ve ban sac dan toc</p>
-                                  </div>
-                                </a>
+                              <% var x = parseInt(infomation1.rows.length / 3); %>
+                              <% var sodu = infomation1.rows.length % 3; %>
+                              <% var count = x; %>
+                              <% infomation1.rows.forEach(function(cus) { %>
+                                    <% var sumary = cus.noidunganh.substring(0, 10) + " ..."; %>
+                                    <% if ( count == x) { %>
+                                        <div class="col-sm-4 col-md-4 column-list-image">
+                                          <a href="/Detailimage/<%= cus.imagecodesx %>" class="thumbnail hoverLink">
+                                            <img src="<%= cus.linkimage %>" alt="...">
+                                            <div class="caption textAlginThumail-Albums">
+                                                  <div class="viewS">
+                                                      <img src="../<%= cus.avatar %>" alt="Image" class="img-circle" /> <%= cus.username %>
+                                                  </div>
+                                                  <p><%= sumary %></p>
+                                                  <div class="viewS">
+                                                      <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>View : <%= cus.soview %></p>
+                                                  </div>
+                                            </div>
+                                          </a>
 
-                                <a href="#" class="thumbnail hoverLink" id="1">
-                                  <img src="../../img/background.jpg" alt="...">
-                                  <div class="caption textAlginThumail-Albums">
-
-                                        <div class="viewS">
-                                            <img src="../../img/bg.jpg" alt="..." class="img-circle" /> Ho Thao Hien
-
+                                        <% if (sodu > 0) { %>
+                                          <% count = -1; %>
+                                          <% sodu = sodu - 1; %>
+                                        <% } else { %>
+                                          <% count = 0; %>
+                                        <% } %>
+                                    <% } else { %>
+                                      <a href="/Detailimage/<%= cus.imagecodesx %>" class="thumbnail hoverLink">
+                                        <img src="<%= cus.linkimage %>" alt="...">
+                                        <div class="caption textAlginThumail-Albums">
+                                              <div class="viewS">
+                                                  <img src="../<%= cus.avatar %>" alt="Image" class="img-circle" /> <%= cus.username %>
+                                              </div>
+                                              <p><%= sumary %></p>
+                                              <div class="viewS">
+                                                  <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>View : <%= cus.soview %></p>
+                                              </div>
                                         </div>
-                                        <p>Sad Piano</p>
-                                        <div class="viewS">
-                                            <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View: 160</p>
-                                        </div>
+                                      </a>
+                                    <% } %>
+                                    <% count = count + 1; %>
 
-                                  </div>
-                                </a>
-                                <a href="#" class="thumbnail hoverLink">
-                                  <img src="../../img/logo1.jpg" alt="...">
-                                  <div class="caption textAlginThumail-Albums">
-                                    <h5>Thumbnail label</h5>
-                                    <p>...</p>
-
-                                  </div>
-                                </a>
-                              </div> <!-- End Column -->
-                              <div class="col-sm-4 col-md-4 column-list-image">
-                                <a href="#" class="thumbnail hoverLink">
-                                  <img src="../../img/logo1.jpg" alt="...">
-                                  <div class="caption">
-                                    <h5>Thumbnail label</h5>
-                                    <p>toi la nguyen thai hoc can duoc chu y hon ve ban sac dan toc</p>
-                                    <p>sdasd sd sad as d sd s d sd s d s d sad as dsa da sd s d s </p>
-                                  </div>
-                                </a>
-                                <a href="#" class="thumbnail hoverLink">
-                                  <img src="../../img/background.jpg" alt="...">
-                                  <div class="caption textAlginThumail-Albums">
-                                    <h5>Thumbnail label</h5>
-                                    <p>...</p>
-
-                                  </div>
-                                </a>
-                                <a href="#" class="thumbnail hoverLink">
-                                  <img src="../../img/BG.jpg" alt="...">
-                                  <div class="caption textAlginThumail-Albums">
-                                    <h5>Thumbnail label</h5>
-                                    <p>...</p>
-
-                                  </div>
-                                </a>
-                              </div> <!-- End Column -->
-                              <div class="col-sm-4 col-md-4 column-list-image">
-                                <a href="#" class="thumbnail hoverLink">
-                                  <img src="../../img/logo1.jpg" alt="...">
-                                  <div class="caption textAlginThumail-Albums">
-                                    <h5>Thumbnail label</h5>
-                                    <p>...</p>
-
-                                  </div>
-                                </a>
-                                <a href="#" class="thumbnail hoverLink">
-                                  <img src="../../img/BG.jpg" alt="...">
-                                  <div class="caption textAlginThumail-Albums">
-                                    <h5>Thumbnail label</h5>
-                                    <p>...</p>
-
-                                  </div>
-                                </a>
-                                <a href="#" class="thumbnail hoverLink">
-                                  <img src="../../img/background.jpg" alt="...">
-                                  <div class="caption textAlginThumail-Albums">
-                                    <h5>Thumbnail label</h5>
-                                    <p>...</p>
-
-                                  </div>
-                                </a>
-                              </div> <!-- End Column -->
-
+                                    <% if(count == x) { %>
+                                      </div>
+                                    <% } %>
+                              <% }); %>
                           </div><!-- End Row-->
                         </div>
                         <!-- End column-->
@@ -266,7 +223,7 @@
                 </div>
                 <!-- via ngoai cua End Row -->
             </div>
-            
+
         </div>
         <!--End: body-web Phần thân của trang web "web được chia làm 3 phần -->
         <div class="panel-footer">
