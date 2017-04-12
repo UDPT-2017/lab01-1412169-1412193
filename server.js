@@ -40,7 +40,7 @@ app.use(express.static(__dirname + "/public")); // dinh nghia file css, ....
 
 app.get("/", function (req, res) {
 
-  res.render("Home");
+  res.render("Home" , {user : req.user});
 
 });
 
@@ -50,9 +50,7 @@ app.get("/", function (req, res) {
 // About Page
 
 app.get("/About", function (req, res) {
-
-  res.render("About");
-
+  res.render("About", {user : req.user} );
 });
 
 
@@ -62,8 +60,39 @@ app.get("/About", function (req, res) {
 
 app.get("/Blogs", function (req, res) {
 
-  res.render("Blog");
+      // res.render("Blog", {user : req.user} );
+      pool.connect(function(err, client, done) {
+      if(err) {
+        return console.error('error fetching client from pool', err);
+      }
+      client.query('select blogcode, noidung ,linkanh, username, avatar, soluotview, ngaydang from blogs a, "user" b where a.usersx = b.id;', function(err, result) {
+      done(err);
 
+      if(err) {
+        res.end();
+        return console.error('error running query', err);
+      }
+        res.render("Blog", {user : req.user , infomation: result});
+      });
+    });
+});
+
+app.get("/BlogDetail/:id", function (req, res) {
+    pool.connect(function(err, client, done) {
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
+    var idcode = req.params.id;
+    client.query('select blogcode, noidung ,linkanh, username, avatar, soluotview, ngaydang from blogs a, "user" b where a.usersx = b.id and a.blogcode = ' + idcode, function(err, result) {
+    done(err);
+
+    if(err) {
+      res.end();
+      return console.error('error running query', err);
+    }
+      res.render("DetailBlogs", {user : req.user , infomation: result.rows[0]});
+    });
+  });
 });
 
 
