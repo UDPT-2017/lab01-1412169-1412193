@@ -115,9 +115,6 @@ app.get("/SubAlbum/:id" , function (req, res) {
                client.query('SELECT albumcode, albumname, imagecodesx, noidunganh, linkimage, soview, username, avatar from albumsd d, chitietalbum b, images c , "user" a where b.albumsids = ' + codeAlbums + ' and b.imageids = c.imagecodesx and c.usercreate = a.id and d.albumcode = b.albumsids;', function (err, result1) {
                 done(err);
 
-
-
-
                 if(err) {
                   res.end();
                   return console.error('error running query', err);
@@ -139,17 +136,13 @@ app.get("/Detailimage/:albumcode/:namepage/:id", function (req, res) {
       var namespacesc = req.params.namepage;
       var idCode = req.params.id;
       var albumcode = req.params.albumcode;
-      console.log(namespacesc);
-      console.log(albumcode);
-      console.log(idCode);
+
       client.query('select imagecodesx, noidunganh, linkimage, soview, username, avatar from images a, "user" b where a.usercreate = b.id and a.imagecodesx = ' + idCode, function(err, result) {
         done(err);
-        console.log("Hello1");
         if(err) {
           res.end();
           return console.error('error running query', err);
         }
-        console.log("Hello2");
         res.render("Detail", {user : req.user, codeAlbums : albumcode,  nameAlbum:  namespacesc, infomation: result.rows[0]});
       });
     });
