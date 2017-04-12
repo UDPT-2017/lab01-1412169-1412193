@@ -2,10 +2,10 @@
 <html>
 
 <head>
-    <title>ALBUMS</title>
-    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <title>BLOGS</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <meta name=”viewport” content=”width=device-width, initial-scale=1″>
-    <link rel="stylesheet" type="text/css" href="../../../css/supportSelect.css">
+    <link rel="stylesheet" type="text/css" href="../css/supportSelect.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style >
         .color {
@@ -27,7 +27,7 @@
                      <span class="icon-bar"></span>
                      </button>
                         <!-- Nơi chứa hình ảnh logo của trang -->
-                        <a class="navbar-brand1" href="#" id="logo"><img src="../../../img/logo.png" alt="" /></a>
+                        <a class="navbar-brand1" href="#" id="logo"><img src="../img/logo.png" alt="" /></a>
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-collapse-a">
                         <ul class="nav navbar-nav">
@@ -63,9 +63,9 @@
             </nav>
             <!-- End Navigation bar-->
             <div id="background">
-                <img src="../../../img/rsz_logo3.png" class="stretch" alt="" />
+                <img src="../img/rsz_logo3.png" class="stretch" alt="" />
                 <div class="info">
-                    <p class="page-header">Albums: <%= nameAlbum %></p>
+                    <p class="page-header">Blogs</p>
                 </div>
             </div>
         </div>
@@ -78,9 +78,7 @@
                         <ol class="breadcrumb">
                             <li><a href="/">Home</a>
                             </li>
-                            <li><a href="/Albums">Albums</a>
-                            </li>
-                            <li><a href="/SubAlbum/<%= codeAlbums %>"><%= nameAlbum %></a>
+                            <li><a href="/Blogs">Blogs</a>
                             </li>
                         </ol>
                     </div>
@@ -89,7 +87,7 @@
                         <div class="wrapper row">
                             <div class="preview col-md-6 col xs-6">
                                 <div class="cont" style="text-align: center;">
-                                    <img src="../../../img/<%= infomation.linkimage %>" style="height: 100%; width:100%;"/>
+                                    <img src="../<%= infomation.linkanh %>" style="height: 100%; width:100%;"/>
                                 </div>
                             </div>
                             <div class="col-md-6 col-xs-6">
@@ -104,25 +102,16 @@
                                     </div>
 
                                 </div>
-                                <p class="product-description"><%= infomation.noidunganh %> .</p>
-                                <h4 class="price">Review: <span><%= infomation.soview %> </span></h4>
+                                <p class="product-description"><%= infomation.noidung %> .</p>
+                                <h4 class="price">Review: <span><%= infomation.soluotview %> </span></h4>
                                 <p class="vote">
-                                  <img src="../../../<%= infomation.avatar %>" alt="..." class="img-circle">
+                                  <img src="../<%= infomation.avatar %>" alt="..." class="img-circle">
                                     <a href=""><%= infomation.username %></a>
                                 </p>
-                                <h5 class="sizes">sizes:
-                            <span class="size" data-toggle="tooltip" title="small">s</span>
-                            <span class="size" data-toggle="tooltip" title="medium">m</span>
-                            <span class="size" data-toggle="tooltip" title="large">l</span>
-                            <span class="size" data-toggle="tooltip" title="xtra large">xl</span>
-                        </h5>
-                        <h5 class="colors">colors:
-                            <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
-                            <span class="color green"></span>
-                            <span class="color blue"></span>
-                        </h5>
+                                <h5>
+                                    Date : <%= infomation.ngaydang %>
+                                </h5>
                                 <div class="action">
-                                    <button class="add-to-cart btn btn-default" type="button">add to cart</button>
                                     <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
                                 </div>
                             </div>
@@ -153,7 +142,7 @@
     </div>
     <!-- End Warpper-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src="../../../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $('ul.nav li.dropdown').hover(function() {
             $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);

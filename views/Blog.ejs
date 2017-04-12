@@ -52,32 +52,29 @@
                   <div class="collapse navbar-collapse" id="navbar-collapse-a">
                      <ul class="nav navbar-nav">
                         <li>
-                           <a href="http://localhost:8080/">Home</a>
+                           <a href="/">Home</a>
                         </li>
                         <li>
-                           <a href="http://localhost:8080/Albums">Albums<span class="sr-only">(current)</span></a>
+                           <a href="/Albums">Albums<span class="sr-only">(current)</span></a>
                         </li>
                         <li>
-                           <a href="http://localhost:8080/About" >About</a>
+                           <a href="/About" >About</a>
                         </li>
                         <li class="active">
-                           <a href="http://localhost:8080/Blogs">Blogs</a>
+                           <a href="/Blogs">Blogs</a>
                         </li>
                      </ul>
                      <!-- Link to Pages -->
                      <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Your Account
-                           <span class="caret"></span>
-                           </a>
-                           <ul class="dropdown-menu">
-                              <li><a href="#">Action</a></li>
-                              <li><a href="#">Another action</a></li>
-                              <li><a href="#">Something else here</a></li>
-                              <li role="separator" class="divider"></li>
-                              <li><a href="http://localhost:8080/logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log Out</a></li>
-                           </ul>
-                        </li>
+                       <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Your Account
+                            <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">Login</a></li>
+                              <li><a href="#">Signup</a></li>
+                            </ul>
+                       </li>
                      </ul>
                   </div>
                   <!--End bao dong  -->
@@ -97,73 +94,40 @@
            <div class="container">
               <div class="breadcrumbs-s">
                    <ol class="breadcrumb">
-                       <li><a href="http://localhost:8080/">Home</a>
+                       <li><a href="/">Home</a>
                        </li>
-                       <li class="active"><a class="colorCrums" href="http://localhost:8080/Blogs">Blogs</a>
+                       <li class="active"><a class="colorCrums" href="/Blogs">Blogs</a>
                        </li>
                    </ol>
               </div>
               <div class="row">
-                 <div class="col-md-12 col-xs-12 column-desgin border-size" >
-                   <div class="media">
-                       <a class="pull-left" href="#">
-                           <img class="media-object effect img-circle" src="../img/logo.png" style="width: 100px;height:100px;">
-                       </a>
-                       <div class="media-body">
-                           <h6 class="media-heading"><img src="../img/bg.jpg" alt="..." class="img-circle"><a href=""> Ho Thao Hien </a>
-                           </h6>
-                           <h5 class="desgin-panel">If The World one day haven't Google Then We have life this is a litte bit more one day ... <a href="http://gridle.in" style="text-decoration: underline;"> Read more ... -> </a></h5>
 
-                           <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><strong> View: 1000</strong>
-                           </p>
-                           <hr style="margin:8px auto">
-                           <span class="label label-default">Albums</span>
-                           <span class="label label-default">Active</span>
-                           <span class="label label-info">Logo</span>
-                           <span class="label label-default">Self</span>
-                       </div>
-                   </div>
-               </div>
-               <div class="col-md-12 col-xs-12 column-desgin border-size">
-                   <div class="media">
-                      <a class="pull-left" href="#">
-                           <img class="media-object effect img-circle" src="../img/logo.png" style="width: 100px;height:100px;">
-                       </a>
-                       <div class="media-body">
-                           <h6 class="media-heading"><img src="../img/bg.jpg" alt="..." class="img-circle"><a href=""> Ho Thao Hien </a>
-                           </h6>
-                           <h5 class="desgin-panel">If The World one day haven't Google Then We have life this is a litte bit more one day ... <a href="http://gridle.in" style="text-decoration: underline;"> Read more ... -> </a></h5>
+                 <% infomation.rows.forEach(function(cus) { %>
+                   <% var sumary = cus.noidung.substring(0, 20) + " ..."; %>
+                   <div class="col-md-12 col-xs-12 column-desgin border-size" >
+                     <div class="media">
+                         <a class="pull-left" href="#">
+                             <img class="media-object effect img-circle" src="<%= cus.linkanh %>" style="width: 100px;height:100px;">
+                         </a>
+                         <div class="media-body">
+                             <h6 class="media-heading"><img src="<%= cus.avatar %>" alt="..." class="img-circle"><a href=""> <%= cus.username %> </a>
+                             </h6>
+                             <h5 class="desgin-panel"><%= sumary %> <a href="/BlogDetail/<%= cus.blogcode %>" style="text-decoration: underline;"> Read more ... -> </a></h5>
 
-                           <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><strong> View: 1000</strong>
-                           </p>
-                           <hr style="margin:8px auto">
-                           <span class="label label-default">Albums</span>
-                           <span class="label label-default">Active</span>
-                           <span class="label label-info">Logo</span>
-                           <span class="label label-default">Self</span>
-                       </div>
-                   </div>
-               </div>
-               <div class="col-md-12 col-xs-12 column-desgin border-size">
-                   <div class="media">
-                       <a class="pull-left" href="#">
-                           <img class="media-object effect img-circle" src="../img/logo.png" style="width: 100px;height:100px;">
-                       </a>
-                       <div class="media-body">
-                           <h6 class="media-heading"><img src="../img/bg.jpg" alt="..." class="img-circle"><a href=""> Ho Thao Hien </a>
-                           </h6>
-                           <h5 class="desgin-panel">If The World one day haven't Google Then We have life this is a litte bit more one day ... <a href="http://gridle.in" style="text-decoration: underline;"> Read more ... -> </a></h5>
+                             <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><strong>View: <%= cus. soluotview%> </strong>
+                             </p>
 
-                           <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><strong> View: 1000</strong>
-                           </p>
-                           <hr style="margin:8px auto">
-                           <span class="label label-default">Albums</span>
-                           <span class="label label-default">Active</span>
-                           <span class="label label-info">Logo</span>
-                           <span class="label label-default">Self</span>
-                       </div>
-                   </div>
-               </div>
+                             <hr style="margin:8px auto">
+                             <span class="label label-default">Albums</span>
+                             <span class="label label-default">Active</span>
+                             <span class="label label-info">Logo</span>
+                             <span class="label label-default">Self</span>
+                         </div>
+                     </div>
+                  </div>
+                 <% }); %>
+
+
               </div><!--End Row -->
            </div>
          </div>
