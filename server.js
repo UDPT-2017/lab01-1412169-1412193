@@ -12,8 +12,6 @@ var urlencodeParser = bodyParser.urlencoded({extended:true});
 
 app.use(urlencodeParser);
 
-
-
 var usersx = {
     username : String,
     password : String,
@@ -246,6 +244,9 @@ app.get("/register", function (req, res) {
   res.render('RegisterPage', { user:req.session.user, message: req.flash('signupMessage') });
 });
 app.post("/register", upload.single("picAvartar"),function (req, res) {
+  console.log("1 .");
+  console.log(req.body);
+  console.log(req.headers);
   pool.connect(function(err, client, done) {
       if(err) {
         return console.error('error fetching client from pool', err);
@@ -282,44 +283,61 @@ app.post("/register", upload.single("picAvartar"),function (req, res) {
 
     });
 });
+/*app.get("/Helloword", function (req, res) {
+    res.render("login");
+});
+
+app.post("/Helloword", function (req, res) {
+  console.log(req.body);
+});*/
+
 
 
 // login page isLoggedLong
-app.get("/login", isLoggedLong, function (req, res) {
+app.get("/login", function (req, res) {
   res.render("register", { user : req.session.user, loginmessage: req.flash('loginMessage') });
 });
+/*var bodyParser1 = require("body-parser");
+var urlencodeParser1 = bodyParser1.urlencoded({extended:true});*/
+
 app.post("/login", function (req, res) {
-  console.log(req);
+  console.log(req.body);
   pool.connect(function(err, client, done) {
       if(err) {
         return console.error('error fetching client from pool', err);
       }
       var usernameEnter = req.body.fusername;
+      console.log(usernameEnter);
       var password = req.body.fpassword;
+      console.log(password);
       client.query('select * from "user" a where a.username = ' + "'" + usernameEnter  + "';", function(err, result) {
           done(err);
+
           if(err) {
             res.end();
             return console.error('error running query', err);
           }
-          var number = result.rows.length;
+
           if(result.rows.length == 0 ) {
+            console.log("1. rows: " + result.rows.length);
             done(null, req.flash('loginMessage', "Username or Password is incorrect" ));
             //console.log(req.session.flash);
             res.redirect("/login");
           }
-          console.log(result.rows.length);
-          if(password != result.rows[0].password) {
+          else if(password != result.rows[0].password) {
+            console.log("2. Password");
             done(null, req.flash('loginMessage', "Username or Password is incorrect" ));
             //console.log(req.session.flash);
             res.redirect("/login");
+          } else {
+            console.log("3. Success");
+            usersx.username = result.rows[0].username;
+            usersx.password = result.rows[0].password;
+            usersx.email = result.rows[0].email;
+            usersx.photo = result.rows[0].avatar;
+            req.session.user = usersx;
+            res.redirect("/");
           }
-          usersx.username = result.rows[0].username;
-          usersx.password = result.rows[0].password;
-          usersx.email = result.rows[0].email;
-          usersx.photo = result.rows[0].avatar;
-          req.session.user = usersx;
-          res.redirect("/");
       });
     });
 });
