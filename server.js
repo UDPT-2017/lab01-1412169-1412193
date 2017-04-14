@@ -319,13 +319,13 @@ app.post("/login", function (req, res) {
           }
 
           if(result.rows.length == 0 ) {
-            console.log("1. rows: " + result.rows.length);
+
             done(null, req.flash('loginMessage', "Username or Password is incorrect" ));
             //console.log(req.session.flash);
             res.redirect("/login");
           }
           else if(password != result.rows[0].password) {
-            console.log("2. Password");
+            
             done(null, req.flash('loginMessage', "Username or Password is incorrect" ));
             //console.log(req.session.flash);
             res.redirect("/login");
