@@ -40,6 +40,19 @@
                      <!-- Link to Pages -->
                      <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
+                          <%  if( user ) { %>
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                              <img src="<%= user.photo %>" alt="..." class="img-circle"> <%= user.username %>
+                              <span class="caret"></span>
+                              </a>
+                              <ul class="dropdown-menu">
+                                 <li><a href="#">Profile</a></li>
+                                 <li><a href="#">New Submit</a></li>
+                                 <li role="separator" class="divider"></li>
+                                 <li><a href="/logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log Out</a></li>
+                              </ul>
+
+                          <%  } else { %>
                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Your Account
                              <span class="caret"></span>
                              </a>
@@ -47,6 +60,7 @@
                                <li><a href="#">Login</a></li>
                                <li><a href="#">Signup</a></li>
                              </ul>
+                          <%   } %>
                         </li>
                      </ul>
                   </div>
