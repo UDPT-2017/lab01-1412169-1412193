@@ -3,8 +3,8 @@
 **Guility Crown** là một bài tập 1 tại môn UDPT.
 
 Thành viên:
-* [ ] **1412193** Tên sinh viên 1 (NguyenThaiHoc1)
-* [ ] **1412169** Hò Thảo Hiền (HoThaoHien)
+* [x] **1412193** Tên sinh viên 1 (NguyenThaiHoc1)
+* [] **1412169** Hò Thảo Hiền (HoThaoHien)
 
 URL: **Chưa có**
 
@@ -32,9 +32,9 @@ Yêu cầu **bắt buộc**
 
 Yêu cầu **không bắt buộc**:
 * [x] Cho phép người dùng đăng nhập, đăng xuất, đăng ký thông tin tài khoản. (**1412193**)
-* [] Có thể xem danh sách các comment của từng bài viết.  (**MSSV**)
+* [x] Có thể xem danh sách các comment của từng bài viết.  (**1412169**)
 * [] Cho phép người dùng đã đăng nhập đăng thêm bài viết mới. (**MSSV**)
-* [] Cho phép người dùng đã đăng nhập comment cho bài viết. (**MSSV**)
+* [x] Cho phép người dùng đã đăng nhập comment cho bài viết. (**1412193**)
 * [] Quản lý thêm thông tin tag cho mỗi bài viết. Mỗi bài viết có thể bao gồm nhiều tag và mỗi tag có thể có nhiều bài viết. (**MSSV**)
 * [0] Cho phép người dùng đăng nhập bằng tài khoản facebook và lấy ảnh đại diện, email từ facebook. (**1412193 : chưa ghép bài vô **)
 * [ ] Cho phép người dùng tạo album và đăng ảnh mới vào album. (**MSSV**)
