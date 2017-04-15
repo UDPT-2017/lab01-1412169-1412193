@@ -115,7 +115,15 @@ app.get("/BlogDetail/:id", function (req, res) {
       res.end();
       return console.error('error running query', err);
     }
-      res.render("DetailBlogs", {user : req.session.user , infomation: result.rows[0]});
+      //res.render("DetailBlogs", {user : req.session.user , infomation: result.rows[0], allcomment: result});
+      client.query('select username, avatar, noidungdang, datescommit from "user" b, comment c where b.id = c.useridx and c.commentblog = ' + idcode, function (err, commentalls) {
+         done(err);
+         if(err){
+           res.end();
+           return console.error("error running query", err);
+         }
+         res.render("DetailBlogs", {user : req.session.user , infomation: result.rows[0], allcomment: commentalls});
+      });
     });
   });
 });
@@ -190,14 +198,21 @@ app.get("/Detailimage/:albumcode/:namepage/:id", function (req, res) {
       var namespacesc = req.params.namepage;
       var idCode = req.params.id;
       var albumcode = req.params.albumcode;
-
       client.query('select imagecodesx, noidunganh, linkimage, soview, username, avatar from images a, "user" b where a.usercreate = b.id and a.imagecodesx = ' + idCode, function(err, result) {
         done(err);
         if(err) {
           res.end();
           return console.error('error running query', err);
         }
-        res.render("Detail", {user : req.session.user, codeAlbums : albumcode,  nameAlbum:  namespacesc, infomation: result.rows[0]});
+
+          client.query('select username, avatar, noidungdang, datescommit from "user" b, comment c where  b.id = c.useridx and c.commentimage = ' + idCode, function (err, result1) {
+            done(err);
+            if(err) {
+              res.end();
+              return console.error('error running query', err);
+            }
+            res.render("Detail", {user : req.session.user, codeAlbums : albumcode,  nameAlbum:  namespacesc, infomation: result.rows[0], allcomment : result1 });
+          });
       });
     });
 });
@@ -325,7 +340,7 @@ app.post("/login", function (req, res) {
             res.redirect("/login");
           }
           else if(password != result.rows[0].password) {
-            
+
             done(null, req.flash('loginMessage', "Username or Password is incorrect" ));
             //console.log(req.session.flash);
             res.redirect("/login");

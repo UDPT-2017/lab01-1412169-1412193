@@ -34,14 +34,14 @@
                             <li>
                                 <a href="/">Home</a>
                             </li>
-                            <li class="active">
-                                <a href="/Albums">Albums <span class="sr-only">(current)</span></a>
+                            <li>
+                                <a href="/Albums">Albums</a>
                             </li>
                             <li>
                                 <a href="/About">About</a>
                             </li>
-                            <li>
-                                <a href="/Blogs">Blogs</a>
+                            <li class="active">
+                                <a href="/Blogs">Blogs <span class="sr-only">(current)</span></a>
                             </li>
                         </ul>
                         <!-- Link to Pages -->
@@ -129,6 +129,26 @@
                                     <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
                                 </div>
                             </div>
+                        </div>
+                        <hr>
+                        <div class="row comment" style="padding : 20px 20px;">
+                          <% allcomment.rows.forEach(function(cus) { %>
+                            <div class="col-md-12 col-xs-12 column-desgin border-size" style="margin-top : 20px;">
+                              <div class="media">
+                                  <a class="pull-left" href="#">
+                                      <img class="media-object effect img-circle" src="../<%= cus.avatar %>" style="width: 100px;height:100px;">
+                                  </a>
+                                  <div class="media-body">
+                                      <h6 class="media-heading"><a href=""> <%= cus.username %> </a>
+                                      </h6>
+                                      <h5 class="desgin-panel"><%= cus.noidungdang %></h5>
+                                      <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><strong>View: <%= cus.datescommit%> </strong>
+                                      </p>
+                                      <hr style="margin:8px auto">
+                                  </div>
+                              </div>
+                           </div>
+                          <% }); %>
                         </div>
                     </div>
                 </div>
