@@ -150,6 +150,19 @@
                            </div>
                           <% }); %>
                         </div>
+                        <%  if( user ) { %>
+                        <div class="row" style="padding: 10px 20px;">
+                          <form action="/addcomment" method="post" class="col-md-6 col-xs-6">
+                            <input type="hidden" name="idBlog" value="<%= allcomment.rows[0].commentblog %>">
+                            <div class="form-group">
+                              <textarea name="noidungbaidang" cols="60" rows="6" placeholder="Your comment" style="margin-right: 20%;height: 100%; width:100%;"></textarea>
+                            </div><!-- End Text Password -->
+                            <div class="form-group">
+                              <button class="btn btn-success" type="submit">OK</button>
+                            </div><!-- Button type<Login> , type<Register> -->
+                          </form>
+                        </div>
+                        <%  } %>
                     </div>
                 </div>
             </div>
