@@ -264,17 +264,20 @@ app.post("/register", upload.single("picAvartar"),function (req, res) {
         return console.error('error fetching client from pool', err);
       }
       var usernameEnter = req.body.username;
+      console.log("Hello");
       client.query('select * from "user" a where a.username = ' + "'" + usernameEnter + "';", function(err, result) {
           done(err);
           if(err) {
             res.end();
             return console.error('error running query', err);
           }
-          if(result.rows.length > 0) {
+          else if(result.rows.length > 0) {
+
             done(null, req.flash('signupMessage', "Username is already exist ! Please Again" ));
             //console.log(req.session.flash);
             res.redirect("/register");
           }
+          else {
           usersx.username = req.body.username;
           usersx.password = req.body.password;
           usersx.email = req.body.email;
@@ -290,6 +293,7 @@ app.post("/register", upload.single("picAvartar"),function (req, res) {
               req.session.user = usersx;
               res.redirect("/profile");
           });
+        }
       });
 
 
