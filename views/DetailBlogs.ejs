@@ -54,7 +54,7 @@
                                   </a>
                                   <ul class="dropdown-menu">
                                      <li><a href="/profile">Profile</a></li>
-                                     <li><a href="#">New Submit</a></li>
+                                     <li><a href="/newBlog">New Submit</a></li>
                                      <li role="separator" class="divider"></li>
                                      <li><a href="/logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log Out</a></li>
                                   </ul>
@@ -153,7 +153,7 @@
                         <%  if( user ) { %>
                         <div class="row" style="padding: 10px 20px;">
                           <form action="/addcomment" method="post" class="col-md-6 col-xs-6">
-                            <input type="hidden" name="idBlog" value="<%= allcomment.rows[0].commentblog %>">
+                            <input type="text" name="idBlog" value="<%= idBlog %>">
                             <div class="form-group">
                               <textarea name="noidungbaidang" cols="60" rows="6" placeholder="Your comment" style="margin-right: 20%;height: 100%; width:100%;"></textarea>
                             </div><!-- End Text Password -->
