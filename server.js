@@ -122,7 +122,7 @@ app.get("/BlogDetail/:id", function (req, res) {
            res.end();
            return console.error("error running query", err);
          }
-         res.render("DetailBlogs", {user : req.session.user , infomation: result.rows[0], allcomment: commentalls});
+         res.render("DetailBlogs", {user : req.session.user , infomation: result.rows[0], allcomment: commentalls, idBlog:idcode});
       });
     });
   });
@@ -259,9 +259,6 @@ app.get("/register", function (req, res) {
   res.render('RegisterPage', { user:req.session.user, message: req.flash('signupMessage') });
 });
 app.post("/register", upload.single("picAvartar"),function (req, res) {
-  console.log("1 .");
-  console.log(req.body);
-  console.log(req.headers);
   pool.connect(function(err, client, done) {
       if(err) {
         return console.error('error fetching client from pool', err);
@@ -400,6 +397,51 @@ app.post("/addcomment", function (req, res) {
   });
 });
 
+var storage1 = multer.diskStorage({
+	destination:function(req, file, cb){
+		cb(null, "./public/img");
+	},
+	filename: function(req, file, cb) {
+		cb(null, file.originalname);
+	}
+});
+
+var upload1 = multer({storage:storage1});
+
+// submit
+app.get("/newBlog",isLoggedIn, function (req, res) {
+    res.render("submitBlogs" , {user : req.session.user});
+});
+
+app.post("/newBlog",upload1.single("photoupload"), function (req, res) {
+    //console.log(req.body);
+    //console.log(req.file.path);
+    pool.connect(function(err, client, done) {
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query('select id from "user" a where a.username = ' + "'" +  req.session.user.username + "';", function(err, result) {
+    done(err);
+
+    if(err) {
+      res.end();
+      return console.error('error running query', err);
+    }
+    var datetime = new Date();
+    var linkanhs = req.file.path.substring(7);
+    var queryString = 'INSERT INTO public.blogs(noidung, linkanh, ngaydang, usersx) VALUES ( $1 , $2, $3, $4);';
+    var para = [req.body.content, linkanhs , datetime,result.rows[0].id ];
+      client.query(queryString, para,function (err, resulf2) {
+        done(err);
+        if(err) {
+          res.end();
+          return console.error('error running query', err);
+        }
+        res.redirect("/Blogs");
+      });
+    });
+  });
+});
 
 
 // port  listen 8080
